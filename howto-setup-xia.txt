@@ -1,0 +1,52 @@
+This guide draws the idea of implementing an XIA topology for
+a quick startup with SOMETHING Inc.
+
+The XIA daemon is installed on a computer with the following quickspecs :
+
+    1/ MySQL server installed on it
+    2/ It needs 2 ethernet cards with possibility to extend up to 3
+    3/ RAID and robusts hard disks
+
+The XIA bridge node is a kind of linksys with XIAMSG_ACL capability (xiacld).
+
+The XIA tunnel node is an OpenVPN server for VPN clients as well as an
+OpenVPN client to the XIA daemon. There is a plugin openvpn_xiad.so loaded
+with the server instance. It speaks XIAMSG_SESSION with the XIA daemon.
+
+The following illustration describes what has been said.
+
+                    +----------------+
+                    |   XIA daemon   |
+                    +--+----------+--+
+                       |          |
+                  +----+----+  +--+------+
+                  | OpenVPN |  | OpenVPN |
+                  | on eth0 |  | on eth1 |
+                  +-+-+-----+  +-----+-+-+   +-----------------+
+                    | |              | |     | XIA bridge node |
+  +-----------------+ |              | +-----+-----------------+
+  | XIA tunnel node | |              |   +-----------------+
+  +-----+-----------+ |              +---+ XIA bridge node |
+        |   +---------+-------+          +-----------------+
+        |   | XIA tunnel node |
+        |   +-------+---------+
+        |           |
+  +-----+------+    |   +------------+
+  | VPN client |    +---+ VPN client |
+  +------------+        +------------+
+
+On the XIA daemon :
+
+    1/ bridge OpenVPN's tap link together
+    2/ apply ACL rules thru OS firewalling facility
+    3/ Allow XIA tunnel node and XIA bridge node to speak on 9090
+
+On the XIA tunnel node :
+
+    1/ bridge OpenVPN's tap link of both client and server instance
+    2/ deny anything going to port 9090
+
+On the XIA bridge node :
+
+    1/ bridge OpenVPN's tap link with the local ethernet
+    2/ deny anything going to port 9090

@@ -1,0 +1,41 @@
+//
+// Do any local configuration here
+//
+
+dlz "XIA Address Mapping" {
+	database "mysql
+
+	{host=localhost dbname=xia user=xia_daemon pass=xia_pass}
+        
+	{
+		SELECT `dns_zone` FROM `contexts` WHERE `dns_zone` = '%zone%'
+	}
+	{
+		(SELECT 120 AS `ttl`, 'A' AS `type`, `rd`.`addr` AS `answer`
+		    FROM `contexts` AS `c`
+		    LEFT JOIN (`tokens` AS `t`, `res_discovery` AS `rd`)
+		    ON (`c`.`id` = `t`.`context` AND `t`.`id` = `rd`.`token`)
+		    WHERE `c`.`dns_zone` LIKE '%zone%'
+			AND `rd`.`hostname` LIKE '%record%')
+		UNION
+		(SELECT 120 AS `ttl`, 'A' AS `type`, `tam`.`addr` AS `answer`
+		    FROM `contexts` AS `c`
+		    LEFT JOIN (`tokens` AS `t`, `res_tokens` AS `rt`, `tokens_addr_map` AS `tam`)
+		    ON (`c`.`id` = `t`.`context` AND `t`.`id` = `rt`.`token` AND `t`.`id` = `tam`.`token`)
+			WHERE `c`.`dns_zone` LIKE '%zone%'
+			AND `rt`.`hostname` LIKE '%record%')
+	}
+	{
+		SELECT 604800 AS `ttl`, 'SOA' AS `type`,
+		    'ns.mind4networks.com.' AS `nameserver`,
+		    'support.mind4networks.com.' AS `contact`,
+		    `dns_serial`, 604800 AS `refresh`, 86400 AS `retry`,
+		    2419200 AS `expire`, 604800 AS `minimum`
+		    FROM `contexts` WHERE `dns_zone` = '%zone%'
+	}";
+};
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
