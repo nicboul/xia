@@ -1,0 +1,22 @@
+[FRAMEWORK]
+> use queue(3) instead of our linkedlist
+
+[netbus]
+> dynamic buffer size
+
+[options]
+> multiple args
+> environment - can query {environment;var} to get data from anywhere
+
+[dbal]
+> removing int vector, using callback
+
+[mysql]
+> 'token' is non-intuitive, is it a session token, a security token, an access token .. ?
+
+[xia-agent]
+> refactorisation, remove all the code in the main.c that are not part of the initialisation
+> and place them in different subsystem.
+
+[discovery_msg]
+> fix the chaddr field

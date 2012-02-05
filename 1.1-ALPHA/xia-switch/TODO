@@ -1,0 +1,8 @@
+context
+	deal properly with the tuntap driver
+
+switch
+	understand why packets might arrive from the wrong interface when originated from the server
+
+plugin
+	plugin subsystem - state notifier

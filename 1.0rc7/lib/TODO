@@ -1,0 +1,8 @@
+
+nib@
+	o socket subsystem
+		o server side
+		o client side
+		o raw socket
+
+	o sched periodic radix sort

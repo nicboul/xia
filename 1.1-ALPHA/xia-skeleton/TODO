@@ -1,0 +1,10 @@
+
+certificate/key
+	fetch directly the information from database
+	handle binary format
+
+SSL session
+	understand the blocking/non-blocking sockets side effects
+
+clean the shit and frameworkalize it.
+

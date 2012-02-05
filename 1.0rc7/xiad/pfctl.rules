@@ -1,0 +1,4 @@
+table <$usr_list>
+table <$res_list>
+pass in from <$usr_list> to <$res_list>
+pass in from <$res_list> to <$usr_list>

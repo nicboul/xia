@@ -1,0 +1,10 @@
+db_name = xia
+db_usr = xia_user
+db_pwd = xia_pass
+db_host = 127.0.0.1
+
+db_plugin = mysql
+db_plugin_path = @hookletsdir@
+
+listen_addr = 127.0.0.1
+port = 9090

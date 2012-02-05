@@ -1,0 +1,17 @@
+
+[netbus]
+> dynamic buffer size
+
+[options]
+> multiple args
+
+[dbal]
+> removing int vector, using callback
+
+[acl]
+> why having __acl_exec and acl_exec, __acl_exec must be renamed.
+> should directly call dbal_get_bridge_owner_context(bm->name);  mux = muxia_exec(XIAMSG_BRIDGE, (void *)&bm); is SO UGLY !
+
+[mysql]
+> the scheme seems ok, but the naming sucks. 'token' is non-intuitive name, like many other terms.
+
