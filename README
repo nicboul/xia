@@ -1,1 +1,14 @@
-Xia Software Suite
+ABOUT :
+Xia Software Suite is the ancestor of the DNDS technology. Xia is built around
+OpenVPN and hence a lot of fancy deep packet management was not possible.
+Please see DNDS https://github.com/nicboul/DNDS
+
+AUTHORS :
+- Nicolas Bouliane <nicboul at gmail dot com>
+- Samuel Jean <peejix at gmail dot com>
+
+SPONSOR ACKNOWLEDGEMENTS :
+Mind4Networks - M4N Technologies inc.
+
+STATUS :
+Deprecated.
